@@ -1,0 +1,1752 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth" data-ops-mode="night">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Alexander Becz — Executive Talent Acquisition Leader, TA Director & Gen AI Sourcing Partner specializing in AI/ML, Cybersecurity, and High-Performance Systems.">
+    <title>Alexander Becz // Executive TA Architecture Engine</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'Fira Code', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        /* =====================================================================
+           MODERN AEROSPACE & CYBER CORPORATE PALETTE
+           Anchored around #5F634F Tactical Olive + Electric Cobalt (#3B82F6 / #0057FF)
+           Default: NIGHT OPS (Dark Mode) with DAY OPS Toggle
+        ===================================================================== */
+
+        /* NIGHT OPS MODE (DEFAULT — Aerospace Obsidian + #5F634F Olive + Luminous Cobalt) */
+        :root[data-ops-mode="night"] {
+            --bg-base: #0B0E0D;                          /* 60% Deep Aerospace Obsidian */
+            --bg-card: rgba(19, 24, 22, 0.88);           /* Dark Olive-Slate Glass */
+            --bg-card-subtle: #181E1B;                   /* Recessed Tactical Panel */
+            --color-olive: #5F634F;                      /* Core Tactical Olive Brand Anchor */
+            --color-olive-tint: rgba(95, 99, 79, 0.24);
+            --color-structure: #F2F4F0;                  /* 30% Crisp Aerospace Bone */
+            --color-structure-rgb: 242, 244, 240;
+            --color-structure-muted: #A9B0A0;            /* Sage-Tinted Muted Text */
+            --color-accent: #3B82F6;                     /* 10% Luminous Cyber Cobalt */
+            --color-accent-rgb: 59, 130, 246;
+            --color-accent-text: #60A5FA;                /* High-Contrast Cobalt Link */
+            --color-text: #F2F4F0;
+            --color-border: rgba(95, 99, 79, 0.55);      /* #5F634F Tactical Border */
+            --color-border-hover: rgba(59, 130, 246, 0.82);
+            --shadow-card: 0 18px 42px -12px rgba(0, 0, 0, 0.78);
+            --particle-color: rgba(169, 176, 160, 0.28);
+            --particle-glow: rgba(59, 130, 246, 0.16);
+            --btn-accent-text: #FFFFFF;
+            --terminal-bg: #080A09;
+            --terminal-code: #60A5FA;
+            --grid-line: rgba(95, 99, 79, 0.14);
+            --watermark-color: rgba(95, 99, 79, 0.09);
+            --spotlight-glow: rgba(59, 130, 246, 0.18);
+            --spotlight-border: rgba(59, 130, 246, 0.55);
+        }
+
+        /* DAY OPS MODE (Clean Aerospace Alabaster + #5F634F Olive + #0057FF Cobalt) */
+        :root[data-ops-mode="day"] {
+            --bg-base: #F7F8F6;                          /* 60% Crisp Alabaster Off-White */
+            --bg-card: rgba(255, 255, 255, 0.92);        /* Elevated White Panel */
+            --bg-card-subtle: #ECEEE9;                   /* Tinted Olive-Grey Surface */
+            --color-olive: #5F634F;                      /* Core Tactical Olive Brand Anchor */
+            --color-olive-tint: rgba(95, 99, 79, 0.12);
+            --color-structure: #1B211E;                  /* 30% Deep Aerospace Slate */
+            --color-structure-rgb: 27, 33, 30;
+            --color-structure-muted: #4C5246;            /* Olive-Slate Secondary Text */
+            --color-accent: #0057FF;                     /* 10% Electric Aerospace Cobalt */
+            --color-accent-rgb: 0, 87, 255;
+            --color-accent-text: #0047D1;                /* WCAG AAA Cobalt on Light */
+            --color-text: #1B211E;
+            --color-border: rgba(95, 99, 79, 0.28);      /* #5F634F Structural Hairline */
+            --color-border-hover: rgba(0, 87, 255, 0.65);
+            --shadow-card: 0 12px 30px -8px rgba(27, 33, 30, 0.08);
+            --particle-color: rgba(95, 99, 79, 0.28);
+            --particle-glow: rgba(0, 87, 255, 0.10);
+            --btn-accent-text: #FFFFFF;
+            --terminal-bg: #141917;
+            --terminal-code: #60A5FA;
+            --grid-line: rgba(95, 99, 79, 0.08);
+            --watermark-color: rgba(95, 99, 79, 0.06);
+            --spotlight-glow: rgba(0, 87, 255, 0.10);
+            --spotlight-border: rgba(0, 87, 255, 0.45);
+        }
+
+        body {
+            background-color: var(--bg-base);
+            color: var(--color-text);
+            transition: background-color 0.3s ease, color 0.3s ease;
+            overflow-x: hidden;
+        }
+
+        /* =====================================================================
+           SCROLL-PROGRESS TELEMETRY BAR
+        ===================================================================== */
+        #scroll-telemetry-track {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            z-index: 60;
+            background: rgba(95, 99, 79, 0.2);
+            pointer-events: none;
+        }
+
+        #scroll-telemetry-bar {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, var(--color-olive) 0%, var(--color-accent) 100%);
+            box-shadow: 0 0 12px rgba(var(--color-accent-rgb), 0.75);
+            transition: width 0.08s linear;
+        }
+
+        /* =====================================================================
+           LAYERED PARALLAX ARCHITECTURE (MULTI-SPEED SCROLL + 3D MOUSE-TILT)
+        ===================================================================== */
+        #parallax-grid-layer {
+            position: fixed;
+            inset: -120px 0;
+            pointer-events: none;
+            z-index: 0;
+            background-size: 48px 48px;
+            background-image:
+                linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+                linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+            will-change: transform;
+        }
+
+        #parallax-mid-layer {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .parallax-watermark {
+            position: absolute;
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 800;
+            letter-spacing: 0.14em;
+            color: var(--watermark-color);
+            user-select: none;
+            will-change: transform;
+        }
+
+        #particle-canvas {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        /* 3D Perspective Stage for Hero & Domain Cards */
+        .tilt-stage {
+            perspective: 1100px;
+        }
+
+        .tilt-card {
+            transform-style: preserve-3d;
+            will-change: transform;
+            transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1),
+                        border-color 0.25s ease,
+                        box-shadow 0.25s ease,
+                        background-color 0.3s ease;
+        }
+
+        .tilt-card-inner {
+            transform: translateZ(18px);
+        }
+
+        /* =====================================================================
+           SPOTLIGHT BORDER & RADIAL CURSOR GLOW ON CARDS
+        ===================================================================== */
+        .spotlight-card {
+            position: relative;
+            overflow: hidden;
+            --mouse-x: 50%;
+            --mouse-y: 50%;
+        }
+
+        .spotlight-card::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            background: radial-gradient(
+                420px circle at var(--mouse-x) var(--mouse-y),
+                var(--spotlight-glow),
+                transparent 65%
+            );
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .spotlight-card::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            padding: 1px;
+            background: radial-gradient(
+                260px circle at var(--mouse-x) var(--mouse-y),
+                var(--spotlight-border),
+                transparent 70%
+            );
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .spotlight-card:hover::before,
+        .spotlight-card:hover::after {
+            opacity: 1;
+        }
+
+        /* Scroll-Triggered Depth Reveal */
+        .parallax-reveal {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+                        transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .parallax-reveal.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .parallax-reveal {
+                opacity: 1;
+                transform: none;
+                transition: none;
+            }
+            .tilt-card, #parallax-grid-layer, .parallax-watermark {
+                transform: none !important;
+                transition: none !important;
+            }
+        }
+
+        .glass-card {
+            background: var(--bg-card);
+            backdrop-filter: blur(14px) saturate(160%);
+            -webkit-backdrop-filter: blur(14px) saturate(160%);
+            border: 1px solid var(--color-border);
+            box-shadow: var(--shadow-card);
+            transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+                        border-color 0.25s ease,
+                        box-shadow 0.25s ease,
+                        background-color 0.3s ease;
+        }
+
+        .glass-card:hover {
+            border-color: var(--color-border-hover);
+        }
+
+        .ripple {
+            position: absolute;
+            border-radius: 50%;
+            transform: scale(0);
+            animation: ripple-effect 0.6s linear;
+            background-color: rgba(var(--color-accent-rgb), 0.35);
+            pointer-events: none;
+        }
+
+        @keyframes ripple-effect {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+
+        .magnetic-btn {
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.15s ease-out, background-color 0.2s ease, border-color 0.2s ease;
+        }
+
+        ::-webkit-scrollbar {
+            width: 7px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-base);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--color-olive);
+            border-radius: 9999px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--color-accent);
+        }
+
+        .accent-text { color: var(--color-accent-text); }
+        .accent-bg { background-color: var(--color-accent); }
+        .accent-border { border-color: var(--color-accent); }
+        .olive-bg { background-color: var(--color-olive); }
+        .olive-tint-bg { background-color: var(--color-olive-tint); }
+        .olive-border { border-color: var(--color-olive); }
+        .struct-text { color: var(--color-structure); }
+        .struct-bg { background-color: var(--color-structure); }
+        .struct-border { border-color: var(--color-border); }
+        .muted-text { color: var(--color-structure-muted); }
+
+        input[type=range] {
+            accent-color: var(--color-accent);
+        }
+
+        /* Command Palette Native Dialog */
+        dialog#cmd-palette::backdrop {
+            background: rgba(5, 8, 7, 0.78);
+            backdrop-filter: blur(8px);
+        }
+        dialog#cmd-palette[open] {
+            display: flex;
+        }
+    </style>
+</head>
+<body class="font-sans antialiased min-h-screen relative selection:bg-[#3B82F6] selection:text-white pb-20 md:pb-0">
+
+    <!-- LIVE SCROLL-PROGRESS TELEMETRY BAR -->
+    <div id="scroll-telemetry-track" aria-hidden="true">
+        <div id="scroll-telemetry-bar"></div>
+    </div>
+
+    <!-- LAYER 1: Deep Background Coordinate Grid (Scroll Speed 0.16x) -->
+    <div id="parallax-grid-layer" aria-hidden="true"></div>
+
+    <!-- LAYER 2: Mid-Ground Aerospace Telemetry & Tactical Accents -->
+    <div id="parallax-mid-layer" aria-hidden="true">
+        <div class="parallax-watermark text-7xl sm:text-9xl top-28 -left-6" data-parallax-speed="0.32" data-mouse-depth="14">
+            //TA_ARCH
+        </div>
+        <div class="parallax-watermark text-6xl sm:text-8xl top-[46rem] right-4" data-parallax-speed="0.45" data-mouse-depth="-18">
+            OSINT::AI
+        </div>
+        <div class="parallax-watermark text-7xl sm:text-9xl top-[92rem] left-8" data-parallax-speed="0.38" data-mouse-depth="16">
+            SEC_OPS
+        </div>
+        <!-- Tactical Reticle Rings -->
+        <div class="parallax-watermark w-72 h-72 rounded-full border border-dashed top-44 right-[8%]" style="border-color: var(--color-border);" data-parallax-speed="0.26" data-mouse-depth="-22"></div>
+        <div class="parallax-watermark w-96 h-96 rounded-full border top-[68rem] -left-24" style="border-color: var(--color-border);" data-parallax-speed="0.35" data-mouse-depth="20"></div>
+    </div>
+
+    <!-- LAYER 3: Interactive Background Particle Canvas -->
+    <canvas id="particle-canvas"></canvas>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="fixed bottom-20 md:bottom-6 right-4 md:right-6 z-50 transform translate-y-24 opacity-0 transition-all duration-300 glass-card px-5 py-3 rounded-lg border flex items-center gap-3 shadow-2xl pointer-events-none font-mono text-xs" style="border-color: var(--color-accent); color: var(--color-text);">
+        <span class="w-2.5 h-2.5 rounded-full accent-bg animate-ping"></span>
+        <span id="toast-msg">SYSTEM // ACTION_SUCCESS</span>
+    </div>
+
+    <!-- Navigation Header -->
+    <header class="fixed top-0 left-0 right-0 z-40 backdrop-blur-md border-b transition-colors duration-300" style="background-color: rgba(11, 14, 13, 0.72); border-color: var(--color-border);">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 h-20 flex items-center justify-between gap-2">
+            <a href="#" class="flex items-center gap-3 group shrink-0">
+                <div class="w-10 h-10 rounded-lg flex items-center justify-center font-mono font-bold text-sm tracking-wider transition-all duration-300 shadow-sm text-white olive-bg border" style="border-color: var(--color-border);">
+                    AB
+                </div>
+                <div>
+                    <span class="text-sm sm:text-base font-extrabold tracking-tight block leading-tight struct-text">ALEXANDER BECZ</span>
+                    <span class="block text-[10px] font-mono muted-text tracking-wide">TA Director &amp; Gen AI Sourcing Partner</span>
+                </div>
+            </a>
+
+            <!-- Desktop Nav Links -->
+            <nav aria-label="Primary Navigation" class="hidden lg:flex items-center gap-6 text-xs font-mono font-semibold tracking-wider muted-text">
+                <a href="#about" class="hover:text-[var(--color-accent-text)] transition-colors">// ABOUT</a>
+                <a href="#expertise" class="hover:text-[var(--color-accent-text)] transition-colors">// DOMAINS</a>
+                <a href="#terminal-section" class="hover:text-[var(--color-accent-text)] transition-colors">// CLI SHELL</a>
+                <a href="#experience" class="hover:text-[var(--color-accent-text)] transition-colors">// TRACK RECORD</a>
+                <a href="#toolkit" class="hover:text-[var(--color-accent-text)] transition-colors">// TOOLKIT</a>
+            </nav>
+
+            <!-- Actions, Cmd+K Launcher, Night/Day Ops Toggle & Mobile Drawer Button -->
+            <div class="flex items-center gap-2 sm:gap-2.5">
+                <!-- Command Palette Trigger (Cmd/Ctrl + K) -->
+                <button id="cmd-palette-trigger" type="button" title="Open Tactical Command Palette (Ctrl+K / Cmd+K)" aria-label="Open Command Palette" class="hidden sm:inline-flex items-center gap-2 px-2.5 py-1.5 rounded-lg border text-[11px] font-mono font-semibold muted-text hover:text-[var(--color-accent-text)] hover:border-[var(--color-accent)] transition-all cursor-pointer" style="border-color: var(--color-border); background-color: var(--bg-card);">
+                    <span>⌘K</span>
+                    <span class="hidden xl:inline text-[10px] opacity-75">CMD</span>
+                </button>
+
+                <!-- Night / Day Ops Toggle -->
+                <button id="theme-toggle-btn" type="button" aria-pressed="true" class="group relative px-2.5 sm:px-3 py-1.5 rounded-full border text-xs font-mono font-bold flex items-center gap-1.5 sm:gap-2 transition-all duration-300 shadow-sm hover:scale-105 cursor-pointer" style="border-color: var(--color-olive); background-color: var(--bg-card); color: var(--color-text);">
+                    <span class="w-2 h-2 rounded-full accent-bg animate-pulse"></span>
+                    <span id="theme-label" class="text-[10px] sm:text-[11px] font-mono tracking-tight font-extrabold">NIGHT OPS</span>
+                </button>
+
+                <!-- Desktop Dossier Button -->
+                <button id="nav-dossier-btn" type="button" class="magnetic-btn hidden md:inline-flex px-3.5 py-2 text-xs font-mono font-bold rounded-lg border transition-all shadow-sm text-white olive-bg hover:opacity-95 cursor-pointer" style="border-color: var(--color-olive);">
+                    DOSSIER
+                </button>
+
+                <!-- Desktop Connect Button -->
+                <button id="nav-connect-btn" type="button" class="magnetic-btn hidden sm:inline-flex px-3.5 py-2 text-xs font-mono font-bold rounded-lg shadow-md transition-all hover:opacity-90 cursor-pointer" style="background-color: var(--color-accent); color: var(--btn-accent-text);">
+                    CONNECT
+                </button>
+
+                <!-- Mobile Tactical Drawer Toggle -->
+                <button id="mobile-menu-btn" type="button" aria-expanded="false" aria-controls="mobile-nav-drawer" aria-label="Toggle Tactical Navigation Menu" class="lg:hidden w-9 h-9 rounded-lg border flex items-center justify-center font-mono text-sm struct-text hover:border-[var(--color-accent)] transition-colors cursor-pointer" style="border-color: var(--color-olive); background-color: var(--bg-card);">
+                    <span id="mobile-menu-icon">☰</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- SLIDE-DOWN MOBILE TACTICAL DRAWER -->
+        <div id="mobile-nav-drawer" class="lg:hidden overflow-hidden max-h-0 opacity-0 transition-all duration-300 ease-out border-t" style="background-color: var(--bg-card); border-color: transparent;">
+            <div class="px-5 py-5 space-y-4 font-mono text-xs">
+                <div class="flex items-center justify-between text-[10px] muted-text pb-2 border-b" style="border-color: var(--color-border);">
+                    <span>SECTOR NAVIGATION // HUD</span>
+                    <span class="accent-text font-bold">STATUS: ONLINE</span>
+                </div>
+
+                <nav aria-label="Mobile Sector Links" class="grid grid-cols-2 gap-2.5 font-bold">
+                    <a href="#about" data-mobile-link class="px-3 py-2.5 rounded-lg border struct-text hover:border-[var(--color-accent)] transition-colors" style="background-color: var(--bg-card-subtle); border-color: var(--color-border);">01 // ABOUT</a>
+                    <a href="#expertise" data-mobile-link class="px-3 py-2.5 rounded-lg border struct-text hover:border-[var(--color-accent)] transition-colors" style="background-color: var(--bg-card-subtle); border-color: var(--color-border);">02 // DOMAINS</a>
+                    <a href="#terminal-section" data-mobile-link class="px-3 py-2.5 rounded-lg border struct-text hover:border-[var(--color-accent)] transition-colors" style="background-color: var(--bg-card-subtle); border-color: var(--color-border);">03 // CLI SHELL</a>
+                    <a href="#experience" data-mobile-link class="px-3 py-2.5 rounded-lg border struct-text hover:border-[var(--color-accent)] transition-colors" style="background-color: var(--bg-card-subtle); border-color: var(--color-border);">04 // TRACK RECORD</a>
+                    <a href="#toolkit" data-mobile-link class="px-3 py-2.5 rounded-lg border struct-text hover:border-[var(--color-accent)] transition-colors col-span-2" style="background-color: var(--bg-card-subtle); border-color: var(--color-border);">05 // TOOLKIT &amp; CREDENTIALS</a>
+                </nav>
+
+                <div class="grid grid-cols-2 gap-2.5 pt-2">
+                    <button type="button" id="mobile-drawer-cmd-btn" class="py-2.5 px-3 rounded-lg border font-bold struct-text text-center cursor-pointer" style="border-color: var(--color-olive); background-color: var(--bg-card-subtle);">
+                        ⌘ QUICK LAUNCHER
+                    </button>
+                    <button type="button" id="mobile-drawer-calc-btn" class="py-2.5 px-3 rounded-lg font-bold text-white accent-bg text-center cursor-pointer">
+                        CAPACITY CALC
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- LAYER 4: Foreground Content Plane -->
+    <main class="relative z-10">
+
+        <!-- Hero Section with 3D Mouse-Tilt & Spotlight Glow -->
+        <section id="about" class="max-w-6xl mx-auto px-4 sm:px-6 pt-32 sm:pt-36 pb-16 sm:pb-20 tilt-stage">
+            <div id="hero-parallax-frame" class="tilt-card spotlight-card rounded-2xl p-6 sm:p-10 glass-card border" style="border-color: var(--color-border);">
+                <div class="tilt-card-inner relative z-10">
+                    <div class="flex flex-wrap items-center justify-between gap-3 mb-6">
+                        <div class="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full text-xs font-mono text-white olive-bg shadow-sm">
+                            <span class="w-2 h-2 rounded-full bg-white animate-ping"></span>
+                            <span class="font-bold tracking-wide">12+ YRS TALENT ACQUISITION ARCHITECTURE</span>
+                        </div>
+
+                        <button type="button" id="hero-cmd-hint" class="hidden md:inline-flex items-center gap-2 px-3 py-1 rounded-full border font-mono text-[11px] muted-text hover:text-[var(--color-accent-text)] hover:border-[var(--color-accent)] transition-colors cursor-pointer" style="border-color: var(--color-border); background-color: var(--bg-card-subtle);">
+                            <span>PRESS</span>
+                            <kbd class="px-1.5 py-0.5 rounded text-[10px] font-bold struct-text border" style="border-color: var(--color-olive);">Ctrl + K</kbd>
+                            <span>FOR COMMAND HUD</span>
+                        </button>
+                    </div>
+
+                    <h1 class="text-3xl sm:text-5xl md:text-6xl font-extrabold tracking-tight leading-[1.12] mb-6 struct-text">
+                        Engineering High-Impact <span class="accent-text underline decoration-2 underline-offset-8">Cyber &amp; AI Talent</span> Pipelines
+                    </h1>
+
+                    <p class="text-sm sm:text-base font-mono leading-relaxed mb-8 border-l-4 pl-4 py-3 rounded-r-lg max-w-3xl" style="border-left-color: var(--color-olive); background-color: var(--bg-card-subtle); color: var(--color-text);">
+                        Relentless Talent Acquisition Leader driving rapid, measurable impact for global tech organizations. Sourced &amp; placed candidates across Software Engineering, AI/ML, Cybersecurity, Reverse Engineers, and Enterprise GTM Talent.
+                    </p>
+
+                    <div class="flex flex-wrap items-center gap-3 sm:gap-4">
+                        <button id="hero-calc-btn" type="button" class="magnetic-btn px-5 sm:px-6 py-3.5 font-mono font-bold text-xs rounded-lg shadow-lg hover:opacity-95 cursor-pointer" style="background-color: var(--color-accent); color: var(--btn-accent-text);">
+                            OPEN_CALIBRATION_CALCULATOR ↵
+                        </button>
+                        <button id="hero-boolean-btn" type="button" class="magnetic-btn px-5 sm:px-6 py-3.5 glass-card font-mono text-xs font-bold rounded-lg struct-text inline-block hover:border-[var(--color-accent)] cursor-pointer" style="border-color: var(--color-olive);">
+                            BOOLEAN_SYNTAX_SHELL ↓
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Executive Metrics Bar (Animated Counters + Spotlight Glow + 3D Tilt) -->
+            <div class="mt-8 sm:mt-10 grid grid-cols-2 md:grid-cols-4 gap-3.5 sm:gap-4 tilt-stage">
+                <div class="glass-card tilt-card spotlight-card p-5 rounded-xl border-l-4 parallax-reveal" style="border-left-color: var(--color-olive);">
+                    <div class="relative z-10">
+                        <div class="text-2xl sm:text-3xl font-mono font-extrabold struct-text counter-metric" data-target="12" data-prefix="" data-suffix="+ YRS">12+ YRS</div>
+                        <div class="text-[11px] font-mono muted-text uppercase mt-1 font-semibold">TA Leadership</div>
+                    </div>
+                </div>
+                <div class="glass-card tilt-card spotlight-card p-5 rounded-xl border-l-4 parallax-reveal" style="border-left-color: var(--color-accent); transition-delay: 60ms;">
+                    <div class="relative z-10">
+                        <div class="text-2xl sm:text-3xl font-mono font-extrabold accent-text counter-metric" data-target="25" data-prefix="$" data-suffix="M+">$25M+</div>
+                        <div class="text-[11px] font-mono muted-text uppercase mt-1 font-semibold">Revenue Impact</div>
+                    </div>
+                </div>
+                <div class="glass-card tilt-card spotlight-card p-5 rounded-xl border-l-4 parallax-reveal" style="border-left-color: var(--color-olive); transition-delay: 120ms;">
+                    <div class="relative z-10">
+                        <div class="text-2xl sm:text-3xl font-mono font-extrabold struct-text counter-metric" data-target="40" data-prefix="-" data-suffix="%">-40%</div>
+                        <div class="text-[11px] font-mono muted-text uppercase mt-1 font-semibold">Time-To-Fill</div>
+                    </div>
+                </div>
+                <div class="glass-card tilt-card spotlight-card p-5 rounded-xl border-l-4 parallax-reveal" style="border-left-color: var(--color-accent); transition-delay: 180ms;">
+                    <div class="relative z-10">
+                        <div class="text-2xl sm:text-3xl font-mono font-extrabold accent-text counter-metric" data-target="250" data-prefix="+" data-suffix="%">+250%</div>
+                        <div class="text-[11px] font-mono muted-text uppercase mt-1 font-semibold">DEI Growth</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Domain Pillars Section with 3D Mouse-Tilt & Spotlight Glow -->
+        <section id="expertise" class="max-w-6xl mx-auto px-4 sm:px-6 py-16 border-t parallax-reveal" style="border-color: var(--color-border);">
+            <div class="mb-10 flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+                <div>
+                    <h2 class="text-xs font-mono accent-text uppercase tracking-widest font-bold">// SPECIALIZED DOMAINS</h2>
+                    <h3 class="text-2xl font-bold struct-text mt-1">Domain Architecture &amp; Sourcing Engine</h3>
+                </div>
+                <span class="text-xs font-mono px-2.5 py-1 rounded text-white olive-bg font-semibold self-start sm:self-auto">Direct Focus Areas</span>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 tilt-stage">
+                <!-- AI/ML -->
+                <a href="https://proximoalex.weebly.com/about.html" target="_blank" rel="noopener" class="glass-card tilt-card spotlight-card p-6 rounded-xl flex flex-col justify-between group block">
+                    <div class="tilt-card-inner relative z-10">
+                        <div class="flex items-center justify-between mb-5">
+                            <div class="w-11 h-11 rounded-lg flex items-center justify-center text-lg shadow-sm" style="background-color: var(--bg-card-subtle); border: 1px solid var(--color-border);">
+                                ⚙️
+                            </div>
+                            <span class="text-xs font-mono font-bold accent-text group-hover:underline flex items-center gap-1">
+                                CASE_STUDY ↵
+                            </span>
+                        </div>
+                        <h4 class="text-lg font-bold struct-text mb-2 group-hover:text-[var(--color-accent-text)] transition-colors">Artificial Intelligence &amp; ML</h4>
+                        <p class="text-xs font-mono muted-text leading-relaxed mb-6">
+                            AI-driven recruitment architecture (Gemini, ChatGPT) for automated candidate sequencing and sourcing AI/ML Engineers &amp; LLM Specialists.
+                        </p>
+                    </div>
+                    <div class="flex flex-wrap gap-1.5 font-mono text-[10px] tilt-card-inner relative z-10">
+                        <span class="px-2.5 py-1 rounded border font-semibold" style="background-color: var(--color-olive-tint); border-color: var(--color-border); color: var(--color-text);">ML Engineers</span>
+                        <span class="px-2.5 py-1 rounded border font-semibold" style="background-color: var(--color-olive-tint); border-color: var(--color-border); color: var(--color-text);">Prompt Eng</span>
+                    </div>
+                </a>
+
+                <!-- Cybersecurity -->
+                <a href="https://proximoalex.weebly.com/cybersecurity.html" target="_blank" rel="noopener" class="glass-card tilt-card spotlight-card p-6 rounded-xl flex flex-col justify-between group block">
+                    <div class="tilt-card-inner relative z-10">
+                        <div class="flex items-center justify-between mb-5">
+                            <div class="w-11 h-11 rounded-lg flex items-center justify-center text-lg shadow-sm" style="background-color: var(--bg-card-subtle); border: 1px solid var(--color-border);">
+                                🛡️
+                            </div>
+                            <span class="text-xs font-mono font-bold accent-text group-hover:underline flex items-center gap-1">
+                                CASE_STUDY ↵
+                            </span>
+                        </div>
+                        <h4 class="text-lg font-bold struct-text mb-2 group-hover:text-[var(--color-accent-text)] transition-colors">Cybersecurity &amp; SecOps</h4>
+                        <p class="text-xs font-mono muted-text leading-relaxed mb-6">
+                            Deep expertise recruiting enterprise security talent (Proofpoint veteran). Sourcing Reverse Engineers, SecOps, and Vuln Researchers globally.
+                        </p>
+                    </div>
+                    <div class="flex flex-wrap gap-1.5 font-mono text-[10px] tilt-card-inner relative z-10">
+                        <span class="px-2.5 py-1 rounded border font-semibold" style="background-color: var(--color-olive-tint); border-color: var(--color-border); color: var(--color-text);">Reverse Eng</span>
+                        <span class="px-2.5 py-1 rounded border font-semibold" style="background-color: var(--color-olive-tint); border-color: var(--color-border); color: var(--color-text);">OSINT</span>
+                    </div>
+                </a>
+
+                <!-- High Performance Systems -->
+                <a href="https://proximoalex.weebly.com/ai-art.html" target="_blank" rel="noopener" class="glass-card tilt-card spotlight-card p-6 rounded-xl flex flex-col justify-between group block">
+                    <div class="tilt-card-inner relative z-10">
+                        <div class="flex items-center justify-between mb-5">
+                            <div class="w-11 h-11 rounded-lg flex items-center justify-center text-lg shadow-sm" style="background-color: var(--bg-card-subtle); border: 1px solid var(--color-border);">
+                                💻
+                            </div>
+                            <span class="text-xs font-mono font-bold accent-text group-hover:underline flex items-center gap-1">
+                                CASE_STUDY ↵
+                            </span>
+                        </div>
+                        <h4 class="text-lg font-bold struct-text mb-2 group-hover:text-[var(--color-accent-text)] transition-colors">High-Perf Systems &amp; Graphics</h4>
+                        <p class="text-xs font-mono muted-text leading-relaxed mb-6">
+                            High-performance graphics engineering, backend systems, and AI visual design workflows. Sourcing Staff ICs in C#/.NET, Go, and C++.
+                        </p>
+                    </div>
+                    <div class="flex flex-wrap gap-1.5 font-mono text-[10px] tilt-card-inner relative z-10">
+                        <span class="px-2.5 py-1 rounded border font-semibold" style="background-color: var(--color-olive-tint); border-color: var(--color-border); color: var(--color-text);">Staff ICs</span>
+                        <span class="px-2.5 py-1 rounded border font-semibold" style="background-color: var(--color-olive-tint); border-color: var(--color-border); color: var(--color-text);">C# / Go / C++</span>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <!-- STATIONARY EMBEDDED CLI TERMINAL SECTION -->
+        <section id="terminal-section" class="max-w-6xl mx-auto px-4 sm:px-6 py-16 border-t parallax-reveal" style="border-color: var(--color-border);">
+            <div class="mb-6 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+                <div>
+                    <h2 class="text-xs font-mono accent-text uppercase tracking-widest font-bold">// INTERACTIVE COMMAND LINE INTERFACE</h2>
+                    <h3 class="text-2xl font-bold struct-text mt-1">Sashik Developer Shell</h3>
+                </div>
+                <div class="text-xs font-mono muted-text">
+                    Shortcut: try <span class="accent-text font-bold">build-query</span> in prompt
+                </div>
+            </div>
+
+            <div class="glass-card spotlight-card p-5 sm:p-6 rounded-xl font-mono shadow-xl" style="border: 1px solid var(--color-olive);">
+                <div class="relative z-10">
+                    <div class="flex flex-wrap items-center justify-between gap-2 border-b pb-3 mb-4" style="border-color: var(--color-border);">
+                        <div class="flex items-center gap-2">
+                            <span class="w-3 h-3 rounded-full bg-rose-500 inline-block"></span>
+                            <span class="w-3 h-3 rounded-full bg-amber-500 inline-block"></span>
+                            <span class="w-3 h-3 rounded-full olive-bg inline-block"></span>
+                            <span class="text-xs muted-text ml-2 font-bold">ALEX_BECZ_CLI_V6.5</span>
+                        </div>
+                        <span class="text-[11px] font-bold accent-text">TYPE 'help' OR 'build-query'</span>
+                    </div>
+
+                    <div id="terminal-output" class="h-56 overflow-y-auto text-xs space-y-1.5 mb-3 struct-text">
+                        <div class="font-bold">Alex Becz System Terminal Online. Cyber-HUD &amp; Parallax Engine Active.</div>
+                        <div class="muted-text">Type <span class="accent-text font-bold">'help'</span> for instructions, <span class="accent-text font-bold">'build-query'</span> for Boolean generation, or press <span class="accent-text font-bold">Ctrl+K</span> anytime.</div>
+                    </div>
+
+                    <div class="flex items-center gap-2 text-xs border-t pt-3" style="border-color: var(--color-border);">
+                        <span class="font-bold accent-text">visitor@alxhb:~$</span>
+                        <input type="text" id="terminal-input" class="bg-transparent border-none outline-none flex-grow font-mono focus:ring-0 struct-text font-semibold" placeholder="enter command...">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Career Timeline Section -->
+        <section id="experience" class="max-w-6xl mx-auto px-4 sm:px-6 py-16 border-t parallax-reveal" style="border-color: var(--color-border);">
+            <div class="mb-10">
+                <h2 class="text-xs font-mono accent-text uppercase tracking-widest font-bold">// CAREER TIMELINE</h2>
+                <h3 class="text-2xl font-bold struct-text mt-1">Execution Track Record</h3>
+            </div>
+
+            <div class="space-y-6">
+                <!-- Role 1 -->
+                <div class="glass-card spotlight-card p-6 rounded-xl border-l-4 parallax-reveal" style="border-left-color: var(--color-accent);">
+                    <div class="relative z-10">
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
+                            <div>
+                                <h4 class="text-xl font-bold struct-text">Senior/Staff Technical Recruiter</h4>
+                                <div class="text-xs font-mono accent-text font-semibold">Filevine • Salt Lake City, UT</div>
+                            </div>
+                            <span class="px-3 py-1 rounded text-xs font-mono font-bold self-start sm:self-auto text-white olive-bg">May 2025 – Present</span>
+                        </div>
+                        <ul class="space-y-1.5 text-xs font-mono list-disc list-inside leading-relaxed muted-text">
+                            <li>Built AI-driven recruitment architecture utilizing Gemini &amp; ChatGPT for candidate sequencing.</li>
+                            <li>Sourced and hired Software Engineers and specialized ML/AI Engineers in Czechia &amp; EMEA expansion.</li>
+                            <li>Hired 16 BDRs/SDRs in first 3 weeks, setting company volume records.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Role 2 -->
+                <div class="glass-card spotlight-card p-6 rounded-xl border-l-4 parallax-reveal" style="border-left-color: var(--color-olive);">
+                    <div class="relative z-10">
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
+                            <div>
+                                <h4 class="text-xl font-bold struct-text">Senior TA Specialist</h4>
+                                <div class="text-xs font-mono muted-text font-semibold">OrionIG • Murray, UT</div>
+                            </div>
+                            <span class="text-xs font-mono muted-text font-semibold">June 2024 – May 2025</span>
+                        </div>
+                        <ul class="space-y-1.5 text-xs font-mono list-disc list-inside leading-relaxed muted-text">
+                            <li>Built candidate pipelines across SaaS, Health Tech, FinTech, and AI/ML (+110% pipeline growth).</li>
+                            <li>Utilized advanced sourcing patterns including extended Boolean and filetype X-raying.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Role 3 -->
+                <div class="glass-card spotlight-card p-6 rounded-xl border-l-4 parallax-reveal" style="border-left-color: var(--color-olive);">
+                    <div class="relative z-10">
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
+                            <div>
+                                <h4 class="text-xl font-bold struct-text">Senior Technical Recruiter</h4>
+                                <div class="text-xs font-mono muted-text font-semibold">Proofpoint • Draper, UT</div>
+                            </div>
+                            <span class="text-xs font-mono muted-text font-semibold">February 2022 – May 2024</span>
+                        </div>
+                        <ul class="space-y-1.5 text-xs font-mono list-disc list-inside leading-relaxed muted-text">
+                            <li>Executed global recruiting strategies for enterprise cybersecurity across US, EMEA, LATAM, and APJ.</li>
+                            <li>Achieved 120% presence growth in Argentina and managed a team of 5 recruiters.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Toolkit Section -->
+        <section id="toolkit" class="max-w-6xl mx-auto px-4 sm:px-6 py-16 border-t parallax-reveal" style="border-color: var(--color-border);">
+            <div class="glass-card spotlight-card p-6 sm:p-8 rounded-2xl">
+                <div class="relative z-10">
+                    <div class="mb-6">
+                        <h2 class="text-xs font-mono accent-text uppercase tracking-widest font-bold">// TOOLKIT MATRIX</h2>
+                        <h3 class="text-2xl font-bold struct-text mt-1">ATS Platforms &amp; Sourcing Credentials</h3>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <div>
+                            <h4 class="text-xs font-mono uppercase tracking-wider mb-3 border-b pb-2 font-bold struct-text" style="border-color: var(--color-border);">ATS PLATFORMS</h4>
+                            <div class="flex flex-wrap gap-2 font-mono text-xs">
+                                <span class="px-2.5 py-1 rounded border font-semibold" style="background-color: var(--color-olive-tint); border-color: var(--color-border); color: var(--color-text);">Lever</span>
+                                <span class="px-2.5 py-1 rounded border font-semibold" style="background-color: var(--color-olive-tint); border-color: var(--color-border); color: var(--color-text);">Greenhouse</span>
+                                <span class="px-2.5 py-1 rounded border font-semibold" style="background-color: var(--color-olive-tint); border-color: var(--color-border); color: var(--color-text);">Ashby</span>
+                                <span class="px-2.5 py-1 rounded border font-semibold" style="background-color: var(--color-olive-tint); border-color: var(--color-border); color: var(--color-text);">Workday</span>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h4 class="text-xs font-mono uppercase tracking-wider mb-3 border-b pb-2 font-bold struct-text" style="border-color: var(--color-border);">SOURCING TECH</h4>
+                            <div class="flex flex-wrap gap-2 font-mono text-xs">
+                                <span class="px-2.5 py-1 rounded border font-bold accent-text" style="background-color: var(--bg-card-subtle); border-color: var(--color-border);">OSINT</span>
+                                <span class="px-2.5 py-1 rounded border font-bold accent-text" style="background-color: var(--bg-card-subtle); border-color: var(--color-border);">Extended Boolean</span>
+                                <span class="px-2.5 py-1 rounded border font-bold accent-text" style="background-color: var(--bg-card-subtle); border-color: var(--color-border);">Python</span>
+                                <span class="px-2.5 py-1 rounded border font-bold accent-text" style="background-color: var(--bg-card-subtle); border-color: var(--color-border);">FastAPI Scraping</span>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h4 class="text-xs font-mono uppercase tracking-wider mb-3 border-b pb-2 font-bold struct-text" style="border-color: var(--color-border);">CREDENTIALS &amp; EDUCATION</h4>
+                            <p class="text-xs font-mono muted-text mb-2">B.B.A. IT Management Candidate – WGU (Late 2028)</p>
+                            <div class="flex flex-wrap gap-2 font-mono text-xs">
+                                <span class="px-2.5 py-0.5 rounded font-bold text-white olive-bg">SHRM</span>
+                                <span class="px-2.5 py-0.5 rounded font-bold text-white olive-bg">HRCI</span>
+                                <span class="px-2.5 py-0.5 rounded font-bold text-white olive-bg">CompTIA</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t py-12 relative z-10" style="background-color: var(--color-olive-tint); border-color: var(--color-border);">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col md:flex-row items-center justify-between gap-6">
+            <div>
+                <div class="text-sm font-bold font-mono struct-text">ALEXANDER BECZ</div>
+                <div class="text-xs font-mono muted-text">Riverton, UT 84065 • 801.903.9097</div>
+            </div>
+
+            <div class="flex flex-wrap items-center justify-center gap-6 text-xs font-mono">
+                <a href="https://proximoalex.weebly.com/" target="_blank" rel="noopener" class="font-bold accent-text hover:underline">// PORTFOLIO</a>
+                <a href="https://www.linkedin.com/in/alxhb/" target="_blank" rel="noopener" class="muted-text hover:text-[var(--color-accent-text)] transition-colors">LINKEDIN</a>
+                <a href="https://www.github.com/septimius72" target="_blank" rel="noopener" class="muted-text hover:text-[var(--color-accent-text)] transition-colors">GITHUB</a>
+                <a href="mailto:shanko.becz@gmail.com" class="muted-text hover:text-[var(--color-accent-text)] transition-colors">EMAIL</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- STICKY FLOATING QUICK-ACTION BAR FOR MOBILE VISITORS -->
+    <div id="mobile-floating-bar" class="md:hidden fixed bottom-3 left-3 right-3 z-40 glass-card rounded-xl border p-2 shadow-2xl grid grid-cols-3 gap-2 font-mono text-[11px] font-bold" style="border-color: var(--color-olive);">
+        <button type="button" id="mobile-bar-dossier" class="py-2.5 px-2 rounded-lg text-white olive-bg flex items-center justify-center gap-1.5 cursor-pointer">
+            <span>DOSSIER</span>
+        </button>
+        <button type="button" id="mobile-bar-boolean" class="py-2.5 px-2 rounded-lg border struct-text flex items-center justify-center gap-1.5 cursor-pointer" style="background-color: var(--bg-card-subtle); border-color: var(--color-border);">
+            <span>BOOLEAN</span>
+        </button>
+        <button type="button" id="mobile-bar-connect" class="py-2.5 px-2 rounded-lg text-white accent-bg flex items-center justify-center gap-1.5 shadow-sm cursor-pointer">
+            <span>CONNECT</span>
+        </button>
+    </div>
+
+    <!-- COMMAND PALETTE QUICK-LAUNCHER (<dialog> Cmd/Ctrl + K) -->
+    <dialog id="cmd-palette" aria-labelledby="cmd-palette-title" class="fixed inset-0 z-50 m-auto w-[92vw] max-w-xl bg-transparent p-0 border-0">
+        <div class="glass-card w-full rounded-2xl border overflow-hidden shadow-2xl font-mono" style="border-color: var(--color-accent); background-color: var(--bg-card);">
+            <div class="p-4 border-b flex items-center gap-3" style="border-color: var(--color-border); background-color: var(--bg-card-subtle);">
+                <span class="accent-text font-extrabold text-sm">&gt;_</span>
+                <label for="cmd-search-input" id="cmd-palette-title" class="sr-only">Command Palette Search</label>
+                <input type="text" id="cmd-search-input" placeholder="Type an action or jump destination..." class="w-full bg-transparent border-none outline-none text-xs sm:text-sm struct-text font-semibold placeholder:opacity-50">
+                <button type="button" id="cmd-close-btn" class="px-2 py-0.5 rounded text-[10px] border muted-text hover:text-[var(--color-accent-text)] cursor-pointer" style="border-color: var(--color-border);">ESC</button>
+            </div>
+
+            <div id="cmd-results-list" class="max-h-80 overflow-y-auto p-2 space-y-1 text-xs">
+                <!-- Populated dynamically -->
+            </div>
+
+            <div class="px-4 py-2.5 border-t flex items-center justify-between text-[10px] muted-text" style="border-color: var(--color-border); background-color: var(--bg-card-subtle);">
+                <span>↑↓ NAVIGATE • ↵ EXECUTE</span>
+                <span>TACTICAL_HUD // V6.5</span>
+            </div>
+        </div>
+    </dialog>
+
+    <!-- EXPANDED MULTI-TAB EXECUTIVE DOSSIER DRAWER WITH CALIBRATION CALCULATOR -->
+    <div id="cv-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300">
+        <div class="glass-card rounded-2xl max-w-3xl w-full max-h-[88vh] flex flex-col overflow-hidden shadow-2xl border" style="border-color: var(--color-olive); background-color: var(--bg-card);">
+            
+            <!-- Modal Header -->
+            <div class="p-6 border-b flex items-center justify-between" style="border-color: var(--color-border);">
+                <div>
+                    <h3 class="text-lg font-mono font-extrabold struct-text flex items-center gap-2">
+                        <span>ALEXANDER_BECZ.DOSSIER</span>
+                        <span class="text-[10px] px-2 py-0.5 rounded font-mono font-bold text-white olive-bg">L6/STAFF PARTNER</span>
+                    </h3>
+                    <p class="text-xs font-mono muted-text">12+ Years Executive Recruiting Architecture</p>
+                </div>
+                <button id="modal-close-btn" type="button" class="w-8 h-8 rounded-lg flex items-center justify-center font-mono font-bold struct-text hover:text-[var(--color-accent-text)] transition-colors cursor-pointer" style="background-color: var(--bg-card-subtle);">
+                    ✕
+                </button>
+            </div>
+
+            <!-- 5-Tab Navigation Bar -->
+            <div class="flex border-b px-6 bg-[var(--bg-card-subtle)] overflow-x-auto text-xs font-mono font-bold" style="border-color: var(--color-border);">
+                <button id="tab-btn-bio" type="button" class="tab-btn py-3 px-4 border-b-2 border-transparent transition-all struct-text whitespace-nowrap cursor-pointer">
+                    [1] EXECUTIVE BIO
+                </button>
+                <button id="tab-btn-calculator" type="button" class="tab-btn py-3 px-4 border-b-2 border-transparent transition-all struct-text whitespace-nowrap cursor-pointer">
+                    [2] CALIBRATION CALCULATOR
+                </button>
+                <button id="tab-btn-metrics" type="button" class="tab-btn py-3 px-4 border-b-2 border-transparent transition-all struct-text whitespace-nowrap cursor-pointer">
+                    [3] SOURCING STACK &amp; METRICS
+                </button>
+                <button id="tab-btn-placements" type="button" class="tab-btn py-3 px-4 border-b-2 border-transparent transition-all struct-text whitespace-nowrap cursor-pointer">
+                    [4] PLACEMENTS &amp; DOMAINS
+                </button>
+                <button id="tab-btn-contact" type="button" class="tab-btn py-3 px-4 border-b-2 border-transparent transition-all struct-text whitespace-nowrap cursor-pointer">
+                    [5] DIRECT CHANNELS
+                </button>
+            </div>
+
+            <!-- Tab Contents Container -->
+            <div class="p-6 overflow-y-auto flex-1 font-mono text-xs space-y-4">
+                
+                <!-- Tab 1: Executive Bio & Scope -->
+                <div id="tab-content-bio" class="tab-content space-y-4">
+                    <div class="p-4 rounded-xl border leading-relaxed" style="background-color: var(--bg-card-subtle); border-color: var(--color-border);">
+                        <h4 class="font-bold text-sm struct-text mb-2">// PROFESSIONAL STATEMENT</h4>
+                        <p class="muted-text">
+                            Relentless talent acquisition leader with 12+ years delivering rapid, measurable impact for global tech organizations. Proven track record designing outbound talent architectures, executing Staff-to-Director technical searches, and embedding GenAI pipelines into daily sourcing workflows.
+                        </p>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <div class="p-3.5 rounded-lg border" style="background-color: var(--bg-card-subtle); border-color: var(--color-border);">
+                            <span class="font-bold block struct-text mb-1">CORE METHODOLOGY</span>
+                            <p class="muted-text text-[11px]">Programmatic Boolean syntax, OSINT investigations, reverse engineer talent mapping, and candidate persona calibrating.</p>
+                        </div>
+                        <div class="p-3.5 rounded-lg border" style="background-color: var(--bg-card-subtle); border-color: var(--color-border);">
+                            <span class="font-bold block struct-text mb-1">GEO REACH</span>
+                            <p class="muted-text text-[11px]">US Nationwide, EMEA (Czechia, UK, Germany), LATAM (Argentina 120% scale-up), and APJ regions.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab 2: Live Calibration Calculator -->
+                <div id="tab-content-calculator" class="tab-content hidden space-y-4">
+                    <div class="p-4 rounded-xl border space-y-4" style="background-color: var(--bg-card-subtle); border-color: var(--color-border);">
+                        <div class="flex justify-between items-center">
+                            <h4 class="font-bold struct-text">// HIRING MANAGER CAPACITY CALIBRATOR</h4>
+                            <span class="text-[10px] font-bold accent-text uppercase tracking-wider">Historical Ratio Engine</span>
+                        </div>
+                        
+                        <!-- Slider 1: Target Headcount -->
+                        <div class="space-y-1">
+                            <div class="flex justify-between font-bold">
+                                <span class="struct-text">Target Hires Needed:</span>
+                                <span id="calc-hires-val" class="accent-text text-sm">4 Roles</span>
+                            </div>
+                            <input type="range" id="calc-hires" min="1" max="25" value="4" class="w-full h-2 rounded-lg cursor-pointer bg-slate-300">
+                        </div>
+
+                        <!-- Slider 2: Role Complexity Archetype -->
+                        <div class="space-y-1">
+                            <div class="flex justify-between font-bold">
+                                <span class="struct-text">Role Difficulty / Seniority:</span>
+                                <span id="calc-role-label" class="struct-text text-xs">Staff/Principal IC (1:35 Pipeline)</span>
+                            </div>
+                            <select id="calc-archetype" class="w-full p-2 rounded border font-mono text-xs font-semibold cursor-pointer" style="background-color: var(--bg-card); border-color: var(--color-border); color: var(--color-text);">
+                                <option value="staff" selected>Staff / Principal Architect (High Scarcity)</option>
+                                <option value="senior">Senior SWE / SecOps (Standard Market)</option>
+                                <option value="volume">GTM / Sales / BDR Team Build (High Velocity)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Output Dynamic Projection Cards -->
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-center">
+                        <div class="p-3.5 rounded-xl border" style="background-color: var(--bg-card-subtle); border-color: var(--color-border);">
+                            <span id="res-sourcing" class="text-xl font-extrabold accent-text block">140</span>
+                            <span class="text-[10px] muted-text font-bold uppercase">Sourced Profiles</span>
+                        </div>
+                        <div class="p-3.5 rounded-xl border" style="background-color: var(--bg-card-subtle); border-color: var(--color-border);">
+                            <span id="res-screens" class="text-xl font-extrabold struct-text block">28</span>
+                            <span class="text-[10px] muted-text font-bold uppercase">Recruiter Screens</span>
+                        </div>
+                        <div class="p-3.5 rounded-xl border" style="background-color: var(--bg-card-subtle); border-color: var(--color-border);">
+                            <span id="res-onsite" class="text-xl font-extrabold struct-text block">12</span>
+                            <span class="text-[10px] muted-text font-bold uppercase">HM Loops</span>
+                        </div>
+                        <div class="p-3.5 rounded-xl border" style="background-color: var(--bg-card-subtle); border-color: var(--color-border);">
+                            <span id="res-time" class="text-xl font-extrabold accent-text block">37 Days</span>
+                            <span class="text-[10px] muted-text font-bold uppercase">Est. Time to Close</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab 3: Sourcing Architecture & Metrics -->
+                <div id="tab-content-metrics" class="tab-content hidden space-y-4">
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-center">
+                        <div class="p-3 rounded-lg border" style="background-color: var(--bg-card-subtle); border-color: var(--color-border);">
+                            <span class="text-xl font-extrabold accent-text block">$25M+</span>
+                            <span class="text-[10px] muted-text font-bold uppercase">Rev Impact</span>
+                        </div>
+                        <div class="p-3 rounded-lg border" style="background-color: var(--bg-card-subtle); border-color: var(--color-border);">
+                            <span class="text-xl font-extrabold struct-text block">-40%</span>
+                            <span class="text-[10px] muted-text font-bold uppercase">Time to Fill</span>
+                        </div>
+                        <div class="p-3 rounded-lg border" style="background-color: var(--bg-card-subtle); border-color: var(--color-border);">
+                            <span class="text-xl font-extrabold accent-text block">16 BDRs</span>
+                            <span class="text-[10px] muted-text font-bold uppercase">In 3 Weeks</span>
+                        </div>
+                        <div class="p-3 rounded-lg border" style="background-color: var(--bg-card-subtle); border-color: var(--color-border);">
+                            <span class="text-xl font-extrabold struct-text block">+250%</span>
+                            <span class="text-[10px] muted-text font-bold uppercase">DEI Growth</span>
+                        </div>
+                    </div>
+
+                    <div class="p-4 rounded-xl border space-y-2" style="background-color: var(--bg-card-subtle); border-color: var(--color-border);">
+                        <h4 class="font-bold struct-text">// RECRUITMENT TECH STACK</h4>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-[11px] muted-text">
+                            <div>• ATS: Lever, Greenhouse, Workday, Ashby</div>
+                            <div>• GenAI: Gemini 1.5/2.0, ChatGPT, Claude 3.5</div>
+                            <div>• Technical: Python, Regex, OSINT, Git CLI</div>
+                            <div>• CRM: Gem, LinkedIn Recruiter Corporate</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab 4: Placements & Technical Domains -->
+                <div id="tab-content-placements" class="tab-content hidden space-y-3">
+                    <div class="p-3 rounded-lg border" style="background-color: var(--bg-card-subtle); border-color: var(--color-border);">
+                        <div class="flex justify-between items-center mb-1">
+                            <span class="font-bold struct-text">Artificial Intelligence &amp; LLMs</span>
+                            <span class="accent-text font-bold text-[10px]">STAFF / PRINCIPAL</span>
+                        </div>
+                        <p class="muted-text text-[11px]">Placed Machine Learning Infrastructure Engineers, Vector DB Specialists, and Prompt Architects.</p>
+                    </div>
+
+                    <div class="p-3 rounded-lg border" style="background-color: var(--bg-card-subtle); border-color: var(--color-border);">
+                        <div class="flex justify-between items-center mb-1">
+                            <span class="font-bold struct-text">Offensive &amp; Defensive Cyber</span>
+                            <span class="accent-text font-bold text-[10px]">ENTERPRISE SECOPS</span>
+                        </div>
+                        <p class="muted-text text-[11px]">Sourced Reverse Engineers (x86/ARM disassembly), Threat Intelligence Analysts, and Kernel Vulnerability Researchers.</p>
+                    </div>
+
+                    <div class="p-3 rounded-lg border" style="background-color: var(--bg-card-subtle); border-color: var(--color-border);">
+                        <div class="flex justify-between items-center mb-1">
+                            <span class="font-bold struct-text">Distributed Systems &amp; Backend</span>
+                            <span class="accent-text font-bold text-[10px]">HIGH-CONCURRENCY</span>
+                        </div>
+                        <p class="muted-text text-[11px]">High-performance backends in Go, C++, Rust, and C#/.NET Core managing high-throughput message fabrics.</p>
+                    </div>
+                </div>
+
+                <!-- Tab 5: Contact & Direct Channels -->
+                <div id="tab-content-contact" class="tab-content hidden space-y-4">
+                    <div class="p-4 rounded-xl border space-y-3" style="background-color: var(--bg-card-subtle); border-color: var(--color-border);">
+                        <h4 class="font-bold struct-text">// DIRECT DIRECTORY</h4>
+                        <div class="space-y-1.5 text-[11px] muted-text">
+                            <div><strong class="struct-text">Location:</strong> Riverton, UT 84065</div>
+                            <div><strong class="struct-text">Phone:</strong> 801.903.9097</div>
+                            <div><strong class="struct-text">Primary Email:</strong> shanko.becz@gmail.com</div>
+                            <div><strong class="struct-text">LinkedIn:</strong> linkedin.com/in/alxhb</div>
+                            <div><strong class="struct-text">GitHub:</strong> github.com/septimius72</div>
+                        </div>
+                    </div>
+                    <button id="modal-copy-email-btn" type="button" class="w-full py-3 font-bold rounded-lg shadow-md hover:opacity-95 text-xs transition cursor-pointer" style="background-color: var(--color-accent); color: var(--btn-accent-text);">
+                        COPY_EMAIL_ADDRESS
+                    </button>
+                </div>
+
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="p-4 border-t flex items-center justify-between text-[11px] font-mono muted-text" style="border-color: var(--color-border); background-color: var(--bg-card-subtle);">
+                <span>CONFIDENTIAL TALENT RECORD</span>
+                <button id="modal-footer-close-btn" type="button" class="font-bold struct-text hover:text-[var(--color-accent-text)] cursor-pointer">
+                    [CLOSE_DRAWER]
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Vanilla JavaScript: Cyber-HUD, Command Palette, Mobile Drawer, Counters, Spotlight & Parallax -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // 1. Toast Notification System
+            function showToast(msg) {
+                const toast = document.getElementById('toast');
+                const toastMsg = document.getElementById('toast-msg');
+                if (!toast || !toastMsg) return;
+                toastMsg.innerText = msg;
+                toast.classList.remove('translate-y-24', 'opacity-0');
+                toast.classList.add('translate-y-0', 'opacity-100');
+
+                setTimeout(() => {
+                    toast.classList.remove('translate-y-0', 'opacity-100');
+                    toast.classList.add('translate-y-24', 'opacity-0');
+                }, 3200);
+            }
+
+            function copyEmail() {
+                navigator.clipboard.writeText('shanko.becz@gmail.com').then(() => {
+                    showToast('SYSTEM // EMAIL_COPIED_TO_CLIPBOARD');
+                }).catch(() => {
+                    showToast('EMAIL: shanko.becz@gmail.com');
+                });
+            }
+
+            // 2. Aerospace Olive (#5F634F) & Cobalt Day/Night Ops Toggle (NIGHT OPS DEFAULT)
+            const OPS_KEY = 'ab_aerospace_ops_mode_v2';
+            const themeBtn = document.getElementById('theme-toggle-btn');
+
+            function applyOpsMode(mode) {
+                document.documentElement.setAttribute('data-ops-mode', mode);
+                localStorage.setItem(OPS_KEY, mode);
+                const isNight = mode === 'night';
+
+                if (themeBtn) {
+                    themeBtn.setAttribute('aria-pressed', String(isNight));
+                }
+                const label = document.getElementById('theme-label');
+                if (label) {
+                    label.innerText = isNight ? 'NIGHT OPS' : 'DAY OPS';
+                }
+            }
+
+            function toggleOpsMode() {
+                const current = document.documentElement.getAttribute('data-ops-mode') || 'night';
+                const nextMode = current === 'night' ? 'day' : 'night';
+                applyOpsMode(nextMode);
+                showToast(`SYSTEM // ${nextMode.toUpperCase()}_OPS_ACTIVATED`);
+            }
+
+            const savedMode = localStorage.getItem(OPS_KEY) || 'night';
+            applyOpsMode(savedMode);
+
+            if (themeBtn) {
+                themeBtn.addEventListener('click', toggleOpsMode);
+            }
+
+            // 3. Scroll-Progress Telemetry Bar
+            const telemetryBar = document.getElementById('scroll-telemetry-bar');
+            function updateScrollTelemetry() {
+                if (!telemetryBar) return;
+                const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+                const pct = docHeight > 0 ? Math.min(100, Math.max(0, (window.scrollY / docHeight) * 100)) : 0;
+                telemetryBar.style.width = `${pct.toFixed(2)}%`;
+            }
+            window.addEventListener('scroll', updateScrollTelemetry, { passive: true });
+            updateScrollTelemetry();
+
+            // 4. Spotlight Cursor Glow Tracking Across Cards
+            document.querySelectorAll('.spotlight-card').forEach((card) => {
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    card.style.setProperty('--mouse-x', `${x}px`);
+                    card.style.setProperty('--mouse-y', `${y}px`);
+                });
+            });
+
+            // 5. Animated Metric Counters (12+ YRS, $25M+, -40%, +250%)
+            const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            const counterElements = document.querySelectorAll('.counter-metric');
+
+            function animateCounter(el) {
+                if (el.dataset.counted) return;
+                el.dataset.counted = 'true';
+                const target = parseFloat(el.dataset.target || '0');
+                const prefix = el.dataset.prefix || '';
+                const suffix = el.dataset.suffix || '';
+
+                if (prefersReducedMotion) {
+                    el.innerText = `${prefix}${target}${suffix}`;
+                    return;
+                }
+
+                const duration = 1250;
+                const startTime = performance.now();
+
+                function tick(now) {
+                    const elapsed = now - startTime;
+                    const progress = Math.min(elapsed / duration, 1);
+                    const eased = 1 - Math.pow(1 - progress, 3);
+                    const currentVal = Math.round(eased * target);
+                    el.innerText = `${prefix}${currentVal}${suffix}`;
+                    if (progress < 1) {
+                        requestAnimationFrame(tick);
+                    } else {
+                        el.innerText = `${prefix}${target}${suffix}`;
+                    }
+                }
+                requestAnimationFrame(tick);
+            }
+
+            if ('IntersectionObserver' in window) {
+                const counterObserver = new IntersectionObserver((entries, observer) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            animateCounter(entry.target);
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.35 });
+                counterElements.forEach((el) => counterObserver.observe(el));
+            } else {
+                counterElements.forEach((el) => animateCounter(el));
+            }
+
+            // 6. Slide-Down Mobile Tactical Drawer
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenuIcon = document.getElementById('mobile-menu-icon');
+            const mobileNavDrawer = document.getElementById('mobile-nav-drawer');
+
+            function setMobileDrawer(isOpen) {
+                if (!mobileMenuBtn || !mobileNavDrawer) return;
+                mobileMenuBtn.setAttribute('aria-expanded', String(isOpen));
+                if (mobileMenuIcon) mobileMenuIcon.innerText = isOpen ? '✕' : '☰';
+
+                if (isOpen) {
+                    mobileNavDrawer.style.maxHeight = '420px';
+                    mobileNavDrawer.style.opacity = '1';
+                    mobileNavDrawer.style.borderColor = 'var(--color-border)';
+                } else {
+                    mobileNavDrawer.style.maxHeight = '0px';
+                    mobileNavDrawer.style.opacity = '0';
+                    mobileNavDrawer.style.borderColor = 'transparent';
+                }
+            }
+
+            mobileMenuBtn?.addEventListener('click', () => {
+                const expanded = mobileMenuBtn.getAttribute('aria-expanded') === 'true';
+                setMobileDrawer(!expanded);
+            });
+
+            document.querySelectorAll('[data-mobile-link]').forEach((link) => {
+                link.addEventListener('click', () => setMobileDrawer(false));
+            });
+
+            // 7. Layered Parallax Engine (Multi-Speed Scroll + 3D Mouse-Tilt Depth)
+            const gridLayer = document.getElementById('parallax-grid-layer');
+            const midWatermarks = document.querySelectorAll('.parallax-watermark');
+
+            let currentScrollY = window.scrollY;
+            let targetScrollY = window.scrollY;
+            let mouseNormX = 0;
+            let mouseNormY = 0;
+            let smoothMouseX = 0;
+            let smoothMouseY = 0;
+
+            if (!prefersReducedMotion) {
+                window.addEventListener('scroll', () => {
+                    targetScrollY = window.scrollY;
+                }, { passive: true });
+
+                window.addEventListener('mousemove', (e) => {
+                    mouseNormX = (e.clientX / window.innerWidth) - 0.5;
+                    mouseNormY = (e.clientY / window.innerHeight) - 0.5;
+                }, { passive: true });
+
+                function updateLayeredParallax() {
+                    currentScrollY += (targetScrollY - currentScrollY) * 0.1;
+                    smoothMouseX += (mouseNormX - smoothMouseX) * 0.08;
+                    smoothMouseY += (mouseNormY - smoothMouseY) * 0.08;
+
+                    if (gridLayer) {
+                        const gridY = -(currentScrollY * 0.16) % 48;
+                        const gridX = -(smoothMouseX * 14);
+                        gridLayer.style.transform = `translate3d(${gridX}px, ${gridY}px, 0)`;
+                    }
+
+                    midWatermarks.forEach((el) => {
+                        const speed = parseFloat(el.dataset.parallaxSpeed || '0.35');
+                        const depth = parseFloat(el.dataset.mouseDepth || '12');
+                        const yOffset = -(currentScrollY * speed);
+                        const xOffset = smoothMouseX * depth;
+                        const yMouseOffset = smoothMouseY * (depth * 0.6);
+                        el.style.transform = `translate3d(${xOffset}px, ${yOffset + yMouseOffset}px, 0)`;
+                    });
+
+                    requestAnimationFrame(updateLayeredParallax);
+                }
+                requestAnimationFrame(updateLayeredParallax);
+
+                document.querySelectorAll('.tilt-card').forEach((card) => {
+                    const isHero = card.id === 'hero-parallax-frame';
+                    const maxTilt = isHero ? 3.2 : 6.5;
+
+                    card.addEventListener('mousemove', (e) => {
+                        const rect = card.getBoundingClientRect();
+                        const relX = (e.clientX - rect.left) / rect.width - 0.5;
+                        const relY = (e.clientY - rect.top) / rect.height - 0.5;
+                        const rotateY = relX * maxTilt * 2;
+                        const rotateX = -relY * maxTilt * 2;
+                        card.style.transform = `rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) translateY(-3px)`;
+                    });
+
+                    card.addEventListener('mouseleave', () => {
+                        card.style.transform = 'rotateX(0deg) rotateY(0deg) translateY(0px)';
+                    });
+                });
+            }
+
+            // IntersectionObserver for Smooth Depth Reveal on Scroll
+            const revealElements = document.querySelectorAll('.parallax-reveal');
+            if ('IntersectionObserver' in window && !prefersReducedMotion) {
+                const revealObserver = new IntersectionObserver((entries, observer) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('is-visible');
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+                revealElements.forEach((el) => revealObserver.observe(el));
+            } else {
+                revealElements.forEach((el) => el.classList.add('is-visible'));
+            }
+
+            // 8. Multi-Tab CV Modal System
+            const modal = document.getElementById('cv-modal');
+
+            function openCvModal(tabKey = 'bio') {
+                if (!modal) return;
+                modal.classList.remove('pointer-events-none', 'opacity-0');
+                modal.classList.add('opacity-100');
+                switchTab(tabKey);
+            }
+
+            function closeCvModal() {
+                if (!modal) return;
+                modal.classList.remove('opacity-100');
+                modal.classList.add('pointer-events-none', 'opacity-0');
+            }
+
+            function switchTab(tabId) {
+                document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+                document.querySelectorAll('.tab-btn').forEach(btn => {
+                    btn.style.borderBottomColor = 'transparent';
+                    btn.classList.remove('accent-text');
+                    btn.classList.add('struct-text');
+                });
+
+                const targetContent = document.getElementById(`tab-content-${tabId}`);
+                const targetBtn = document.getElementById(`tab-btn-${tabId}`);
+
+                if (targetContent) targetContent.classList.remove('hidden');
+                if (targetBtn) {
+                    targetBtn.style.borderBottomColor = 'var(--color-accent)';
+                    targetBtn.classList.remove('struct-text');
+                    targetBtn.classList.add('accent-text');
+                }
+            }
+
+            const tabs = ['bio', 'calculator', 'metrics', 'placements', 'contact'];
+            tabs.forEach(tab => {
+                const btn = document.getElementById(`tab-btn-${tab}`);
+                if (btn) {
+                    btn.addEventListener('click', () => switchTab(tab));
+                }
+            });
+
+            document.getElementById('nav-dossier-btn')?.addEventListener('click', () => openCvModal('bio'));
+            document.getElementById('nav-connect-btn')?.addEventListener('click', () => openCvModal('contact'));
+            document.getElementById('hero-calc-btn')?.addEventListener('click', () => openCvModal('calculator'));
+            document.getElementById('modal-close-btn')?.addEventListener('click', closeCvModal);
+            document.getElementById('modal-footer-close-btn')?.addEventListener('click', closeCvModal);
+            document.getElementById('modal-copy-email-btn')?.addEventListener('click', copyEmail);
+
+            // Mobile Floating Quick-Action Bar & Drawer Buttons
+            document.getElementById('mobile-bar-dossier')?.addEventListener('click', () => openCvModal('bio'));
+            document.getElementById('mobile-bar-connect')?.addEventListener('click', () => openCvModal('contact'));
+            document.getElementById('mobile-bar-boolean')?.addEventListener('click', () => {
+                document.getElementById('terminal-section')?.scrollIntoView({ behavior: 'smooth' });
+                setTimeout(() => executeTerminalCommand('build-query --role ai --site linkedin'), 420);
+            });
+            document.getElementById('mobile-drawer-calc-btn')?.addEventListener('click', () => {
+                setMobileDrawer(false);
+                openCvModal('calculator');
+            });
+
+            // 9. Command Palette Quick-Launcher (Cmd/Ctrl + K)
+            const cmdPalette = document.getElementById('cmd-palette');
+            const cmdSearchInput = document.getElementById('cmd-search-input');
+            const cmdResultsList = document.getElementById('cmd-results-list');
+            let cmdSelectedIndex = 0;
+
+            const COMMAND_ACTIONS = [
+                {
+                    id: 'dossier-bio',
+                    tag: 'EXECUTIVE',
+                    title: 'Open Executive Dossier & Bio',
+                    desc: 'View 12+ year leadership overview & geographic scope',
+                    run: () => openCvModal('bio')
+                },
+                {
+                    id: 'capacity-calc',
+                    tag: 'HIRING_MGR',
+                    title: 'Launch Hiring Capacity Calibrator',
+                    desc: 'Model sourcing funnel ratios & time-to-close',
+                    run: () => openCvModal('calculator')
+                },
+                {
+                    id: 'bool-ai',
+                    tag: 'SOURCING',
+                    title: 'Generate AI / ML Staff Boolean String',
+                    desc: 'Auto-copy LinkedIn Boolean query to clipboard',
+                    run: () => {
+                        document.getElementById('terminal-section')?.scrollIntoView({ behavior: 'smooth' });
+                        executeTerminalCommand('build-query --role ai --site linkedin');
+                    }
+                },
+                {
+                    id: 'bool-cyber',
+                    tag: 'SOURCING',
+                    title: 'Generate Cybersecurity / Reverse Eng Boolean',
+                    desc: 'Auto-copy SecOps & Vuln Researcher query',
+                    run: () => {
+                        document.getElementById('terminal-section')?.scrollIntoView({ behavior: 'smooth' });
+                        executeTerminalCommand('build-query --role cyber --site linkedin');
+                    }
+                },
+                {
+                    id: 'bool-github',
+                    tag: 'OSINT',
+                    title: 'Run GitHub X-Ray Systems Architect Query',
+                    desc: 'Target distributed systems & Rust/Go engineers on GitHub',
+                    run: () => {
+                        document.getElementById('terminal-section')?.scrollIntoView({ behavior: 'smooth' });
+                        executeTerminalCommand('build-query --role systems --site github');
+                    }
+                },
+                {
+                    id: 'track-record',
+                    tag: 'NAV',
+                    title: 'Jump to Career Track Record',
+                    desc: 'Filevine, OrionIG, and Proofpoint execution metrics',
+                    run: () => document.getElementById('experience')?.scrollIntoView({ behavior: 'smooth' })
+                },
+                {
+                    id: 'toggle-ops',
+                    tag: 'SYSTEM',
+                    title: 'Toggle Night Ops / Day Ops Theme',
+                    desc: 'Switch between dark obsidian and light alabaster palettes',
+                    run: () => toggleOpsMode()
+                },
+                {
+                    id: 'copy-email',
+                    tag: 'CONTACT',
+                    title: 'Copy Direct Email (shanko.becz@gmail.com)',
+                    desc: 'Copy Alexander Becz direct contact address',
+                    run: () => copyEmail()
+                }
+            ];
+
+            let filteredCmds = [...COMMAND_ACTIONS];
+
+            function renderCmdList() {
+                if (!cmdResultsList) return;
+                if (filteredCmds.length === 0) {
+                    cmdResultsList.innerHTML = `<div class="p-4 text-center muted-text">No matching tactical commands found.</div>`;
+                    return;
+                }
+
+                cmdResultsList.innerHTML = filteredCmds.map((item, idx) => {
+                    const active = idx === cmdSelectedIndex;
+                    return `
+                        <button type="button" data-cmd-idx="${idx}" class="w-full text-left px-3.5 py-2.5 rounded-lg flex items-center justify-between gap-3 transition-colors cursor-pointer ${active ? 'olive-bg text-white' : 'hover:bg-white/5 struct-text'}">
+                            <div>
+                                <div class="font-bold text-xs">${item.title}</div>
+                                <div class="text-[10px] ${active ? 'text-white/85' : 'muted-text'}">${item.desc}</div>
+                            </div>
+                            <span class="px-2 py-0.5 rounded text-[9px] font-bold shrink-0 ${active ? 'bg-black/30 text-white' : 'olive-tint-bg accent-text'}">${item.tag}</span>
+                        </button>
+                    `;
+                }).join('');
+
+                cmdResultsList.querySelectorAll('[data-cmd-idx]').forEach((btn) => {
+                    btn.addEventListener('click', () => {
+                        const idx = parseInt(btn.dataset.cmdIdx || '0', 10);
+                        executeCmdSelection(idx);
+                    });
+                });
+            }
+
+            function executeCmdSelection(idx) {
+                const chosen = filteredCmds[idx];
+                if (!chosen) return;
+                closeCmdPalette();
+                chosen.run();
+            }
+
+            function openCmdPalette() {
+                if (!cmdPalette || typeof cmdPalette.showModal !== 'function') return;
+                filteredCmds = [...COMMAND_ACTIONS];
+                cmdSelectedIndex = 0;
+                if (cmdSearchInput) cmdSearchInput.value = '';
+                renderCmdList();
+                cmdPalette.showModal();
+                setTimeout(() => cmdSearchInput?.focus(), 30);
+            }
+
+            function closeCmdPalette() {
+                if (cmdPalette?.open) cmdPalette.close();
+            }
+
+            cmdSearchInput?.addEventListener('input', (e) => {
+                const q = e.target.value.trim().toLowerCase();
+                filteredCmds = COMMAND_ACTIONS.filter(
+                    (c) => c.title.toLowerCase().includes(q) || c.desc.toLowerCase().includes(q) || c.tag.toLowerCase().includes(q)
+                );
+                cmdSelectedIndex = 0;
+                renderCmdList();
+            });
+
+            cmdSearchInput?.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowDown') {
+                    e.preventDefault();
+                    if (filteredCmds.length > 0) {
+                        cmdSelectedIndex = (cmdSelectedIndex + 1) % filteredCmds.length;
+                        renderCmdList();
+                    }
+                } else if (e.key === 'ArrowUp') {
+                    e.preventDefault();
+                    if (filteredCmds.length > 0) {
+                        cmdSelectedIndex = (cmdSelectedIndex - 1 + filteredCmds.length) % filteredCmds.length;
+                        renderCmdList();
+                    }
+                } else if (e.key === 'Enter') {
+                    e.preventDefault();
+                    executeCmdSelection(cmdSelectedIndex);
+                }
+            });
+
+            document.getElementById('cmd-palette-trigger')?.addEventListener('click', openCmdPalette);
+            document.getElementById('hero-cmd-hint')?.addEventListener('click', openCmdPalette);
+            document.getElementById('mobile-drawer-cmd-btn')?.addEventListener('click', () => {
+                setMobileDrawer(false);
+                openCmdPalette();
+            });
+            document.getElementById('cmd-close-btn')?.addEventListener('click', closeCmdPalette);
+            cmdPalette?.addEventListener('click', (e) => {
+                if (e.target === cmdPalette) closeCmdPalette();
+            });
+
+            window.addEventListener('keydown', (e) => {
+                if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+                    e.preventDefault();
+                    if (cmdPalette?.open) {
+                        closeCmdPalette();
+                    } else {
+                        openCmdPalette();
+                    }
+                } else if (e.key === 'Escape') {
+                    closeCvModal();
+                    setMobileDrawer(false);
+                }
+            });
+
+            // 10. Dynamic Live Calibration Calculator Logic
+            function runCapacityCalculator() {
+                const hiresInput = document.getElementById('calc-hires');
+                const archetypeInput = document.getElementById('calc-archetype');
+                if (!hiresInput || !archetypeInput) return;
+
+                const hires = parseInt(hiresInput.value, 10);
+                const archetype = archetypeInput.value;
+                document.getElementById('calc-hires-val').innerText = `${hires} ${hires === 1 ? 'Role' : 'Roles'}`;
+
+                let sourcingPerHire = 35;
+                let screenRatio = 7;
+                let loopRatio = 3;
+                let daysBase = 28;
+
+                if (archetype === 'staff') {
+                    sourcingPerHire = 35;
+                    screenRatio = 7;
+                    loopRatio = 3;
+                    daysBase = 28;
+                    document.getElementById('calc-role-label').innerText = 'Staff/Principal IC (1:35 Pipeline)';
+                } else if (archetype === 'senior') {
+                    sourcingPerHire = 24;
+                    screenRatio = 5;
+                    loopRatio = 2.5;
+                    daysBase = 20;
+                    document.getElementById('calc-role-label').innerText = 'Senior SWE / SecOps (1:24 Pipeline)';
+                } else {
+                    sourcingPerHire = 15;
+                    screenRatio = 3.5;
+                    loopRatio = 2;
+                    daysBase = 14;
+                    document.getElementById('calc-role-label').innerText = 'High Velocity GTM (1:15 Pipeline)';
+                }
+
+                const totalSourced = hires * sourcingPerHire;
+                const totalScreens = Math.round(hires * screenRatio);
+                const totalLoops = Math.round(hires * loopRatio);
+                const estDays = Math.round(daysBase + (hires * 2.2));
+
+                document.getElementById('res-sourcing').innerText = totalSourced;
+                document.getElementById('res-screens').innerText = totalScreens;
+                document.getElementById('res-onsite').innerText = totalLoops;
+                document.getElementById('res-time').innerText = `${estDays} Days`;
+            }
+
+            const calcHires = document.getElementById('calc-hires');
+            const calcArchetype = document.getElementById('calc-archetype');
+            if (calcHires) calcHires.addEventListener('input', runCapacityCalculator);
+            if (calcArchetype) calcArchetype.addEventListener('change', runCapacityCalculator);
+            runCapacityCalculator();
+
+            // 11. Magnetic Button + Haptic Ripple Effect
+            document.querySelectorAll('.magnetic-btn').forEach(btn => {
+                btn.addEventListener('mousemove', (e) => {
+                    const rect = btn.getBoundingClientRect();
+                    const x = (e.clientX - (rect.left + rect.width / 2)) * 0.22;
+                    const y = (e.clientY - (rect.top + rect.height / 2)) * 0.22;
+                    btn.style.transform = `translate(${x}px, ${y}px)`;
+                });
+
+                btn.addEventListener('mouseleave', () => {
+                    btn.style.transform = 'translate(0px, 0px)';
+                });
+
+                btn.addEventListener('click', function(e) {
+                    const rect = btn.getBoundingClientRect();
+                    const circle = document.createElement('span');
+                    const diameter = Math.max(btn.clientWidth, btn.clientHeight);
+                    const radius = diameter / 2;
+
+                    circle.style.width = circle.style.height = `${diameter}px`;
+                    circle.style.left = `${e.clientX - rect.left - radius}px`;
+                    circle.style.top = `${e.clientY - rect.top - radius}px`;
+                    circle.classList.add('ripple');
+
+                    const existing = btn.querySelector('.ripple');
+                    if (existing) existing.remove();
+
+                    btn.appendChild(circle);
+                });
+            });
+
+            // 12. Interactive Boolean Query Generator Helper
+            function generateBooleanString(roleInput = 'ai', platform = 'linkedin') {
+                let titleTokens = '';
+                let skillTokens = '';
+                let siteTarget = '';
+
+                const normalized = roleInput.toLowerCase();
+
+                if (normalized.includes('cyber') || normalized.includes('sec')) {
+                    titleTokens = '("Security Engineer" OR "Reverse Engineer" OR "SecOps" OR "Vulnerability Researcher")';
+                    skillTokens = '("IDA Pro" OR Ghidra OR OSINT OR "Kernel" OR "C++" OR "Assembly")';
+                } else if (normalized.includes('system') || normalized.includes('backend') || normalized.includes('infra')) {
+                    titleTokens = '("Staff Software Engineer" OR "Principal Engineer" OR "Infrastructure Architect")';
+                    skillTokens = '("Distributed Systems" OR Raft OR Kafka OR Kubernetes OR Golang OR Rust)';
+                } else {
+                    titleTokens = '("Staff ML Engineer" OR "Principal AI Engineer" OR "AI Architect")';
+                    skillTokens = '("PyTorch" OR "LLM" OR "vLLM" OR "Transformers" OR "CUDA" OR "Vector DB")';
+                }
+
+                if (platform === 'github') {
+                    siteTarget = 'site:github.com ';
+                } else if (platform === 'xray') {
+                    siteTarget = 'site:linkedin.com/in/ ';
+                }
+
+                const exclusion = '-recruiter -intern -fellowship -"talent acquisition"';
+                return `${siteTarget}${titleTokens} AND ${skillTokens} ${exclusion}`;
+            }
+
+            // 13. CLI Terminal Execution Engine
+            const termInput = document.getElementById('terminal-input');
+            const termOutput = document.getElementById('terminal-output');
+
+            function executeTerminalCommand(rawCmd) {
+                if (!termInput || !termOutput) return;
+                const cmd = rawCmd.trim().toLowerCase();
+
+                const line = document.createElement('div');
+                line.className = 'font-bold struct-text';
+                line.innerText = `visitor@alxhb:~$ ${rawCmd}`;
+                termOutput.appendChild(line);
+
+                const response = document.createElement('div');
+                response.className = 'font-semibold accent-text mb-2';
+
+                if (cmd.startsWith('build-query')) {
+                    let role = 'ai';
+                    let site = 'linkedin';
+
+                    if (cmd.includes('--role cyber')) role = 'cyber';
+                    if (cmd.includes('--role backend') || cmd.includes('--role systems')) role = 'systems';
+                    if (cmd.includes('--site github')) site = 'github';
+                    if (cmd.includes('--site xray')) site = 'xray';
+
+                    const queryStr = generateBooleanString(role, site);
+                    navigator.clipboard.writeText(queryStr).catch(() => {});
+                    response.innerHTML = `
+                        <div>Generated Query (${role.toUpperCase()} / ${site.toUpperCase()}):</div>
+                        <div class="p-2 rounded font-mono text-[11px] my-1 select-all break-all border" style="background-color: var(--terminal-bg); color: var(--terminal-code); border-color: var(--color-olive);">${queryStr}</div>
+                        <div class="text-xs font-bold" style="color: var(--color-olive);">✓ Copied to clipboard automatically.</div>
+                    `;
+                } else {
+                    switch(cmd) {
+                        case 'help':
+                            response.innerText = 'COMMANDS: help, build-query [--role ai|cyber|systems] [--site linkedin|github|xray], capacity, about, skills, trackrecord, contact, toggle_theme, open_dossier, clear';
+                            break;
+                        case 'capacity':
+                            openCvModal('calculator');
+                            response.innerText = 'Opening interactive pipeline capacity calculator...';
+                            break;
+                        case 'about':
+                            response.innerText = 'Alex Becz - Staff/Senior Technical Recruiter with 12+ years specializing in AI/ML, Cybersecurity, and High-Performance Systems.';
+                            break;
+                        case 'skills':
+                            response.innerText = 'CORE SKILLS: AI Sourcing, Prompt Engineering, Extended Boolean, OSINT, Lever, Greenhouse, Workday, Python, Technical Screening.';
+                            break;
+                        case 'trackrecord':
+                            response.innerText = 'TRACK RECORD: Filevine (Sr/Staff Recruiter), OrionIG (Sr TA Specialist), Proofpoint (Sr Technical Recruiter).';
+                            break;
+                        case 'contact':
+                            response.innerText = 'EMAIL: shanko.becz@gmail.com | PHONE: 801.903.9097 | LOCATION: Riverton, UT';
+                            break;
+                        case 'toggle_theme':
+                            toggleOpsMode();
+                            response.innerText = 'Ops mode successfully toggled via CLI.';
+                            break;
+                        case 'open_dossier':
+                            openCvModal('bio');
+                            response.innerText = 'Opening interactive 5-tab dossier drawer...';
+                            break;
+                        case 'clear':
+                            termOutput.innerHTML = '';
+                            termInput.value = '';
+                            return;
+                        default:
+                            response.className = 'text-rose-500 mb-2';
+                            response.innerText = `Command not recognized: '${cmd}'. Type 'help' or 'build-query' for available scripts.`;
+                    }
+                }
+
+                termOutput.appendChild(response);
+                termOutput.scrollTop = termOutput.scrollHeight;
+                termInput.value = '';
+            }
+
+            if (termInput) {
+                termInput.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter') {
+                        executeTerminalCommand(termInput.value);
+                    }
+                });
+            }
+
+            // 14. Boolean Syntax Shell Button
+            const heroBooleanBtn = document.getElementById('hero-boolean-btn');
+            if (heroBooleanBtn) {
+                heroBooleanBtn.addEventListener('click', () => {
+                    const termSection = document.getElementById('terminal-section');
+                    if (termSection) {
+                        termSection.scrollIntoView({ behavior: 'smooth' });
+                    }
+                    setTimeout(() => {
+                        executeTerminalCommand('build-query --role ai --site linkedin');
+                        if (termInput) termInput.focus();
+                    }, 450);
+                });
+            }
+
+            // 15. Particle Canvas Animation (with Parallax Scroll & Mouse Depth)
+            const canvas = document.getElementById('particle-canvas');
+            if (canvas) {
+                const ctx = canvas.getContext('2d');
+
+                function resizeCanvas() {
+                    canvas.width = window.innerWidth;
+                    canvas.height = window.innerHeight;
+                }
+                resizeCanvas();
+                window.addEventListener('resize', resizeCanvas);
+
+                let mouse = { x: canvas.width / 2, y: canvas.height / 2 };
+                window.addEventListener('mousemove', (e) => {
+                    mouse.x = e.clientX;
+                    mouse.y = e.clientY;
+                });
+
+                const particles = Array.from({ length: 46 }, () => ({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    size: Math.random() * 2 + 1,
+                    depth: Math.random() * 0.6 + 0.2,
+                    speedX: (Math.random() - 0.5) * 0.35,
+                    speedY: (Math.random() - 0.5) * 0.35
+                }));
+
+                let lastScroll = window.scrollY;
+
+                function animateCanvas() {
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+                    const scrollDelta = window.scrollY - lastScroll;
+                    lastScroll = window.scrollY;
+
+                    const style = getComputedStyle(document.documentElement);
+                    const particleColor = style.getPropertyValue('--particle-color').trim() || 'rgba(169, 176, 160, 0.28)';
+                    const glowColor = style.getPropertyValue('--particle-glow').trim() || 'rgba(59, 130, 246, 0.16)';
+
+                    const gradient = ctx.createRadialGradient(mouse.x, mouse.y, 10, mouse.x, mouse.y, 350);
+                    gradient.addColorStop(0, glowColor);
+                    gradient.addColorStop(1, 'transparent');
+                    ctx.fillStyle = gradient;
+                    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+                    ctx.fillStyle = particleColor;
+                    particles.forEach((p) => {
+                        p.x += p.speedX;
+                        p.y += p.speedY - scrollDelta * 0.22 * p.depth;
+
+                        if (p.x < 0) p.x = canvas.width;
+                        if (p.x > canvas.width) p.x = 0;
+                        if (p.y < 0) p.y = canvas.height;
+                        if (p.y > canvas.height) p.y = 0;
+
+                        ctx.beginPath();
+                        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                        ctx.fill();
+                    });
+
+                    requestAnimationFrame(animateCanvas);
+                }
+                animateCanvas();
+            }
+
+        });
+    </script>
+</body>
+</html>
